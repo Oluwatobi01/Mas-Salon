@@ -39,7 +39,7 @@ const App: React.FC = () => {
       <ScrollToTop />
       <div className="min-h-screen flex flex-col font-sans selection:bg-secondary selection:text-black">
         <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-        <main className="flex-grow">
+        <main className="flex-grow pt-28">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />

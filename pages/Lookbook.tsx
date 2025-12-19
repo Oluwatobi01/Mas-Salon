@@ -18,7 +18,7 @@ export const Lookbook: React.FC = () => {
 
   return (
     <div className="w-full bg-background-light dark:bg-[#0f0f11] min-h-screen">
-      <div className="max-w-[1400px] mx-auto px-4 py-12 md:py-20">
+      <div className="max-w-[1400px] mx-auto px-4 pb-12 pt-6 md:pb-20 md:pt-10">
         <div className="text-center mb-16">
           <h1 className="text-6xl md:text-9xl font-serif font-black text-[#161118] dark:text-white mb-6 uppercase tracking-tighter">Lookbook</h1>
           <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto">

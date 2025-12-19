@@ -5,7 +5,7 @@ export const About: React.FC = () => {
   return (
     <div className="w-full bg-background-light dark:bg-[#1d1022]">
       {/* Manifesto Hero */}
-      <div className="w-full px-4 md:px-10 py-16 md:py-24 max-w-7xl mx-auto">
+      <div className="w-full px-4 md:px-10 pb-16 pt-6 md:pb-24 md:pt-10 max-w-7xl mx-auto">
          <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="flex-1 flex flex-col gap-6">
                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 w-fit">

@@ -32,7 +32,36 @@ export const Booking: React.FC = () => {
       setSelectedServices(selectedServices.filter(s => s.id !== service.id));
     } else {
       setSelectedServices([...selectedServices, service]);
+      // Auto-advance logic for Step 0
+      setTimeout(() => {
+        if (currentStep === 0) {
+          setCurrentStep(1);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 500);
     }
+  };
+
+  const handleStylistSelect = (stylist: Stylist | null) => {
+    setSelectedStylist(stylist);
+    // Auto-advance logic for Step 1
+    setTimeout(() => {
+        if (currentStep === 1) {
+          setCurrentStep(2);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, 500);
+  };
+
+  const handleTimeSelect = (time: string) => {
+    setSelectedTime(time);
+    // Auto-advance logic for Step 2
+    setTimeout(() => {
+        if (currentStep === 2) {
+          setCurrentStep(3);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, 500);
   };
 
   const handleNext = () => {
@@ -107,21 +136,21 @@ export const Booking: React.FC = () => {
   }
 
   return (
-    <div className="w-full flex flex-col items-center py-24 px-4 md:px-10 lg:px-20 min-h-screen bg-background-light dark:bg-background-dark">
+    <div className="w-full flex flex-col items-center pb-20 md:pb-24 pt-6 md:pt-10 px-4 md:px-10 lg:px-20 min-h-screen bg-background-light dark:bg-background-dark">
       <div className="flex flex-col max-w-[1440px] w-full">
         
         {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-5xl md:text-8xl font-serif font-black text-[#161118] dark:text-white tracking-tighter mb-4 leading-[0.85]">
+        <div className="mb-8 md:mb-12 text-center md:text-left">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-black text-[#161118] dark:text-white tracking-tighter mb-4 leading-tight md:leading-[0.85]">
             BOOK YOUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic">GLOW UP</span>
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 font-medium text-xl">Customize your perfect salon experience.</p>
+          <p className="text-gray-500 dark:text-gray-400 font-medium text-lg md:text-xl">Customize your perfect salon experience.</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
           
           {/* Main Content Area */}
-          <div className="lg:col-span-8 flex flex-col gap-10">
+          <div className="lg:col-span-8 flex flex-col gap-8 md:gap-10">
             
             {/* Steps Indicator */}
             <div className="flex gap-2 overflow-x-auto no-scrollbar pb-2">
@@ -130,7 +159,7 @@ export const Booking: React.FC = () => {
                     key={step} 
                     onClick={() => setCurrentStep(idx)}
                     disabled={idx > currentStep}
-                    className={`flex-shrink-0 px-6 py-3 rounded-xl text-sm uppercase tracking-widest font-bold transition-all ${
+                    className={`flex-shrink-0 px-4 md:px-6 py-3 rounded-xl text-xs md:text-sm uppercase tracking-widest font-bold transition-all ${
                     idx === currentStep 
                         ? 'bg-[#161118] dark:bg-white text-white dark:text-black shadow-lg' 
                         : idx < currentStep 
@@ -180,30 +209,30 @@ export const Booking: React.FC = () => {
 
             {/* Step 2: Stylist */}
             {currentStep === 1 && (
-               <div className="animate-fade-in-up grid grid-cols-2 md:grid-cols-3 gap-6">
+               <div className="animate-fade-in-up grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                    <div 
-                     onClick={() => setSelectedStylist(null)}
-                     className={`flex flex-col items-center justify-center gap-4 cursor-pointer group p-8 rounded-[2.5rem] border-2 transition-all ${!selectedStylist ? 'border-primary bg-primary/5' : 'border-transparent bg-white dark:bg-[#1a1a1c] hover:border-gray-200 dark:hover:border-white/10'}`}
+                     onClick={() => handleStylistSelect(null)}
+                     className={`flex flex-col items-center justify-center gap-4 cursor-pointer group p-6 md:p-8 rounded-[2.5rem] border-2 transition-all ${!selectedStylist ? 'border-primary bg-primary/5' : 'border-transparent bg-white dark:bg-[#1a1a1c] hover:border-gray-200 dark:hover:border-white/10'}`}
                    >
-                     <div className="size-28 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center mb-2">
-                        <Scissors className="w-10 h-10 text-gray-400" />
+                     <div className="size-20 md:size-28 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center mb-2">
+                        <Scissors className="w-8 h-8 md:w-10 md:h-10 text-gray-400" />
                      </div>
-                     <p className="font-bold text-[#161118] dark:text-white text-xl">First Available</p>
+                     <p className="font-bold text-[#161118] dark:text-white text-lg md:text-xl">First Available</p>
                    </div>
                    {sampleStylists.map(stylist => (
                      <div 
                         key={stylist.id}
-                        onClick={() => setSelectedStylist(stylist)}
-                        className={`flex flex-col items-center gap-4 cursor-pointer group p-8 rounded-[2.5rem] border-2 transition-all relative overflow-hidden ${selectedStylist?.id === stylist.id ? 'border-primary bg-primary/5' : 'border-transparent bg-white dark:bg-[#1a1a1c] hover:border-gray-200 dark:hover:border-white/10'}`}
+                        onClick={() => handleStylistSelect(stylist)}
+                        className={`flex flex-col items-center gap-4 cursor-pointer group p-6 md:p-8 rounded-[2.5rem] border-2 transition-all relative overflow-hidden ${selectedStylist?.id === stylist.id ? 'border-primary bg-primary/5' : 'border-transparent bg-white dark:bg-[#1a1a1c] hover:border-gray-200 dark:hover:border-white/10'}`}
                      >
-                        <div className="size-28 rounded-full p-[3px] bg-gradient-to-tr from-primary to-secondary relative z-10 mb-2 group-hover:scale-110 transition-transform">
+                        <div className="size-20 md:size-28 rounded-full p-[3px] bg-gradient-to-tr from-primary to-secondary relative z-10 mb-2 group-hover:scale-110 transition-transform">
                            <img src={stylist.image} className="size-full rounded-full object-cover border-4 border-white dark:border-[#1a1a1c]" alt={stylist.name} />
                         </div>
                         <div className="text-center z-10">
-                          <p className="font-bold text-[#161118] dark:text-white text-xl leading-tight">{stylist.name}</p>
+                          <p className="font-bold text-[#161118] dark:text-white text-lg md:text-xl leading-tight">{stylist.name}</p>
                           <p className="text-xs font-mono text-primary uppercase mt-1">{stylist.role}</p>
                         </div>
-                        {stylist.topPick && <div className="absolute top-4 right-4 bg-secondary text-black text-[10px] font-black px-3 py-1 rounded-full uppercase">Top Pick</div>}
+                        {stylist.topPick && <div className="absolute top-4 right-4 bg-secondary text-black text-[10px] font-black px-2 md:px-3 py-1 rounded-full uppercase">Top</div>}
                      </div>
                    ))}
                </div>
@@ -211,12 +240,13 @@ export const Booking: React.FC = () => {
 
             {/* Step 3: Date & Time */}
             {currentStep === 2 && (
-               <div className="animate-fade-in-up bg-white dark:bg-[#1a1a1c] p-10 rounded-[3rem] border border-gray-100 dark:border-white/5 flex flex-col xl:flex-row gap-12">
+               <div className="animate-fade-in-up bg-white dark:bg-[#1a1a1c] p-6 md:p-10 rounded-[2.5rem] md:rounded-[3rem] border border-gray-100 dark:border-white/5 flex flex-col xl:flex-row gap-8 md:gap-12">
                   <div className="flex-1">
-                    <div className="flex justify-between items-center mb-8">
-                        <h4 className="font-serif font-black text-3xl dark:text-white italic">October 2023</h4>
+                    <div className="flex justify-between items-center mb-6 md:mb-8">
+                        <h4 className="font-serif font-black text-2xl md:text-3xl dark:text-white italic">October 2023</h4>
                     </div>
-                    <div className="grid grid-cols-7 gap-4 text-center">
+                    {/* Make grid responsive: tighter gaps on mobile, normal on desktop */}
+                    <div className="grid grid-cols-7 gap-1 md:gap-4 text-center">
                         {['Su','Mo','Tu','We','Th','Fr','Sa'].map(d => <span key={d} className="text-gray-400 text-xs font-mono uppercase font-bold">{d}</span>)}
                         {[...Array(31)].map((_, i) => {
                             const d = i + 1;
@@ -225,7 +255,7 @@ export const Booking: React.FC = () => {
                             <button 
                                 key={i} 
                                 onClick={() => setSelectedDate(`2023-10-${d}`)}
-                                className={`h-12 w-12 rounded-full text-sm font-bold flex items-center justify-center transition-all ${isSelected ? 'bg-primary text-white shadow-lg scale-110' : 'text-[#161118] dark:text-white hover:bg-gray-100 dark:hover:bg-white/10'}`}
+                                className={`h-10 w-10 md:h-12 md:w-12 rounded-full text-xs md:text-sm font-bold flex items-center justify-center transition-all ${isSelected ? 'bg-primary text-white shadow-lg scale-110' : 'text-[#161118] dark:text-white hover:bg-gray-100 dark:hover:bg-white/10'}`}
                             >
                                 {d}
                             </button>
@@ -233,15 +263,15 @@ export const Booking: React.FC = () => {
                         })}
                     </div>
                   </div>
-                  <div className="w-px bg-gray-100 dark:bg-white/10 hidden xl:block"></div>
+                  <div className="w-full h-px xl:w-px xl:h-auto bg-gray-100 dark:bg-white/10 block"></div>
                   <div className="flex-1 flex flex-col gap-6">
                     <p className="text-sm font-black text-gray-400 uppercase tracking-widest">Available Slots</p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3 md:gap-4">
                         {['09:00 AM', '10:30 AM', '01:00 PM', '02:30 PM', '04:00 PM'].map(time => (
                             <button 
                             key={time}
-                            onClick={() => setSelectedTime(time)}
-                            className={`px-6 py-4 rounded-2xl border text-sm font-bold transition-all ${selectedTime === time ? 'bg-[#161118] dark:bg-white text-white dark:text-black border-transparent scale-105' : 'border-gray-200 dark:border-white/10 text-gray-600 dark:text-white hover:border-primary'}`}
+                            onClick={() => handleTimeSelect(time)}
+                            className={`px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl border text-xs md:text-sm font-bold transition-all ${selectedTime === time ? 'bg-[#161118] dark:bg-white text-white dark:text-black border-transparent scale-105' : 'border-gray-200 dark:border-white/10 text-gray-600 dark:text-white hover:border-primary'}`}
                             >
                             {time}
                             </button>
@@ -253,13 +283,13 @@ export const Booking: React.FC = () => {
             
             {/* Step 4: Confirm */}
             {currentStep === 3 && (
-               <div className="animate-fade-in-up flex flex-col items-center text-center py-20 bg-white dark:bg-[#1a1a1c] rounded-[3rem] border border-gray-100 dark:border-white/5 relative overflow-hidden">
+               <div className="animate-fade-in-up flex flex-col items-center text-center py-12 md:py-20 bg-white dark:bg-[#1a1a1c] rounded-[3rem] border border-gray-100 dark:border-white/5 relative overflow-hidden">
                   <div className="absolute inset-0 bg-noise opacity-10"></div>
-                  <div className="relative z-10 size-32 bg-secondary rounded-full flex items-center justify-center text-black mx-auto mb-8 animate-bounce shadow-2xl">
-                    <Check className="w-16 h-16" />
+                  <div className="relative z-10 size-24 md:size-32 bg-secondary rounded-full flex items-center justify-center text-black mx-auto mb-6 md:mb-8 animate-bounce shadow-2xl">
+                    <Check className="w-12 h-12 md:w-16 md:h-16" />
                   </div>
-                  <h3 className="relative z-10 text-5xl font-serif font-black text-[#161118] dark:text-white mb-4 italic">READY TO SLAY?</h3>
-                  <p className="relative z-10 text-gray-500 mb-8 max-w-sm text-lg">Review your "receipt" on the right. If everything looks good, hit confirm to lock it in.</p>
+                  <h3 className="relative z-10 text-4xl md:text-5xl font-serif font-black text-[#161118] dark:text-white mb-4 italic">READY TO SLAY?</h3>
+                  <p className="relative z-10 text-gray-500 mb-8 max-w-sm text-base md:text-lg">Review your "receipt" on the right. If everything looks good, hit confirm to lock it in.</p>
                </div>
             )}
 
@@ -287,8 +317,8 @@ export const Booking: React.FC = () => {
           </div>
 
           {/* Sidebar Summary - The Receipt */}
-          <div className="lg:col-span-4 relative">
-             <div className="sticky top-32">
+          <div className="lg:col-span-4 relative order-first lg:order-last">
+             <div className="sticky top-24 md:top-32">
                 <div className="relative bg-white dark:bg-[#f3f0f4] p-6 text-black font-mono text-sm shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-300">
                    {/* Receipt Hole */}
                    <div className="absolute top-4 left-1/2 -translate-x-1/2 size-4 bg-background-light dark:bg-background-dark rounded-full"></div>
@@ -357,17 +387,33 @@ export const Booking: React.FC = () => {
                    <div className="receipt-edge"></div>
                 </div>
 
-                <Button 
-                   fullWidth
-                   variant="black"
-                   size="lg"
-                   disabled={selectedServices.length === 0} 
-                   onClick={handleConfirm}
-                   className="mt-8"
-                 >
-                   {currentStep === 3 ? 'Confirm & Pay' : 'Checkout'}
-                 </Button>
+                <div className="hidden lg:block">
+                  <Button 
+                     fullWidth
+                     variant="black"
+                     size="lg"
+                     disabled={selectedServices.length === 0} 
+                     onClick={handleConfirm}
+                     className="mt-8"
+                   >
+                     {currentStep === 3 ? 'Confirm & Pay' : 'Checkout'}
+                   </Button>
+                </div>
              </div>
+          </div>
+          
+          {/* Mobile Sticky Action Bar */}
+          <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50">
+             <Button 
+                 fullWidth
+                 variant="black"
+                 size="lg"
+                 disabled={selectedServices.length === 0} 
+                 onClick={handleConfirm}
+                 className="shadow-2xl"
+               >
+                 {currentStep === 3 ? 'Confirm & Pay' : `Checkout $${total}`}
+             </Button>
           </div>
 
         </div>

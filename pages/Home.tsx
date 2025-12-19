@@ -25,15 +25,15 @@ const Marquee = ({ reverse = false, text }: { reverse?: boolean, text: string })
   <div className="relative flex overflow-hidden py-5 bg-[#161118] dark:bg-white text-white dark:text-black border-y-2 border-primary/20">
     <div className={`animate-${reverse ? 'marquee-reverse' : 'marquee'} whitespace-nowrap flex gap-8 items-center`}>
       {[...Array(10)].map((_, i) => (
-        <span key={i} className="text-3xl font-black uppercase tracking-widest flex items-center gap-8">
-          {text} <Star className="w-6 h-6 fill-current text-primary" />
+        <span key={i} className="text-xl md:text-3xl font-black uppercase tracking-widest flex items-center gap-8">
+          {text} <Star className="w-5 h-5 md:w-6 md:h-6 fill-current text-primary" />
         </span>
       ))}
     </div>
     <div className={`absolute top-1/2 -translate-y-1/2 animate-${reverse ? 'marquee-reverse' : 'marquee'} whitespace-nowrap flex gap-8 items-center`} style={{ left: '100%' }}>
       {[...Array(10)].map((_, i) => (
-        <span key={i} className="text-3xl font-black uppercase tracking-widest flex items-center gap-8">
-          {text} <Star className="w-6 h-6 fill-current text-primary" />
+        <span key={i} className="text-xl md:text-3xl font-black uppercase tracking-widest flex items-center gap-8">
+          {text} <Star className="w-5 h-5 md:w-6 md:h-6 fill-current text-primary" />
         </span>
       ))}
     </div>
@@ -49,36 +49,36 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <div className="w-full pt-20">
+    <div className="w-full">
       {/* Hero Section */}
       <div className="w-full px-4 md:px-6 py-6 max-w-[1440px] mx-auto">
-        <div className="relative w-full h-[85vh] min-h-[600px] rounded-[2rem] overflow-hidden flex flex-col justify-end p-6 md:p-12 group shadow-2xl">
+        <div className="relative w-full h-[85vh] min-h-[500px] rounded-[2rem] overflow-hidden flex flex-col justify-end p-6 md:p-12 group shadow-2xl">
           <div 
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[3s] ease-out group-hover:scale-105" 
             style={{ backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0CONSXYWSuFya0mpbc-Fq4nTTXaw0OmpoHHlOucTSjzWKZ_GWRcpmh6P__GoO3DLKFTudGYPhZmk_xoF3Vhx9fS84D7sfUgRdzNJ7oc2UVilRJhdJShvBXfjI3kSOXK4nhZbPi34ka2_t_QsJqaZNWdjnRVfwU_6HqmqefXbd16nxr_FxcUjghbNjoWVAh3wdR5ksbOwdmO8ecfdy1QkK1BKLTgPGL_YH6VBkbUcU-8b0Z3g8VP-QcgSYF0_R3OCQoCJU6Hglu6iV")` }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
           
-          <div className="relative z-10 flex flex-col items-start gap-6 animate-fade-in-up max-w-5xl">
+          <div className="relative z-10 flex flex-col items-start gap-4 md:gap-6 animate-fade-in-up max-w-5xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary text-black text-xs font-black uppercase tracking-wider shadow-[0_0_15px_rgba(204,255,0,0.6)] animate-pulse-slow">
-              <Zap className="w-3 h-3 fill-black" /> New Collection Drop
+              <Zap className="w-3 h-3 fill-black" /> NEW COLLECTION DROP
             </div>
             
-            <h1 className="text-white text-[15vw] md:text-9xl leading-[0.8] font-serif font-black tracking-tighter hover-glitch cursor-default transition-colors">
+            <h1 className="text-white text-6xl sm:text-7xl md:text-9xl leading-[0.9] md:leading-[0.8] font-serif font-black tracking-tighter hover-glitch cursor-default transition-colors">
               MAIN<br/>CHARACTER
             </h1>
             
-            <p className="text-white/80 text-lg md:text-2xl font-medium max-w-xl font-sans backdrop-blur-md bg-white/5 p-4 rounded-xl border border-white/10">
-              Redefining beauty for the internet generation. <br/>Step into the future of self-expression.
+            <p className="text-white/80 text-base md:text-2xl font-medium max-w-xl font-sans backdrop-blur-md bg-white/5 p-4 rounded-xl border border-white/10">
+              Redefining beauty for the internet generation. <br className="hidden md:block"/>Step into the future of self-expression.
             </p>
             
-            <div className="flex flex-wrap gap-4 mt-2">
+            <div className="flex flex-wrap gap-3 mt-2">
                <Link to="/booking">
-                 <Button size="lg" variant="primary" icon>Book Appointment</Button>
+                 <Button size="lg" variant="primary" icon>BOOK APPOINTMENT</Button>
                </Link>
                <Link to="/quiz">
                  <Button size="lg" variant="outline" className="!text-white !border-white hover:!bg-white hover:!text-black">
-                   <Sparkles className="w-5 h-5 mr-2" /> Find Your Vibe
+                   <Sparkles className="w-5 h-5 mr-2" /> FIND YOUR VIBE
                  </Button>
                </Link>
             </div>
@@ -90,15 +90,15 @@ export const Home: React.FC = () => {
 
       {/* Stories */}
       <div className="w-full px-4 md:px-10 py-16 max-w-[1440px] mx-auto">
-        <div className="flex gap-8 overflow-x-auto no-scrollbar pb-8 snap-x">
+        <div className="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar pb-8 snap-x">
           {stories.map((story, i) => (
-            <div key={i} className="snap-center flex flex-col items-center gap-4 min-w-[100px] cursor-pointer group">
+            <div key={i} className="snap-center flex flex-col items-center gap-4 min-w-[90px] cursor-pointer group">
               <div className="p-[4px] rounded-full bg-gradient-to-tr from-secondary via-primary to-purple-600 group-hover:rotate-6 transition-transform duration-300 shadow-xl">
-                <div className="rounded-full border-[4px] border-white dark:border-[#0f0f11] overflow-hidden size-[90px]">
+                <div className="rounded-full border-[4px] border-white dark:border-[#0f0f11] overflow-hidden size-[80px] md:size-[90px]">
                   <img src={story.img} alt={story.name} className="w-full h-full object-cover" />
                 </div>
               </div>
-              <p className="text-sm font-bold text-[#161118] dark:text-white uppercase tracking-wider">{story.name}</p>
+              <p className="text-xs md:text-sm font-bold text-[#161118] dark:text-white uppercase tracking-wider">{story.name}</p>
             </div>
           ))}
         </div>
@@ -111,10 +111,10 @@ export const Home: React.FC = () => {
            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary rounded-full blur-[150px] opacity-20"></div>
 
            <div className="relative z-10 flex flex-col gap-8 max-w-xl">
-             <h2 className="text-6xl md:text-8xl font-serif font-black text-white leading-[0.9]">
+             <h2 className="text-5xl md:text-8xl font-serif font-black text-white leading-[0.9]">
                WHAT'S<br/>YOUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic">VIBE?</span>
              </h2>
-             <p className="text-gray-400 text-xl font-medium">
+             <p className="text-gray-400 text-lg md:text-xl font-medium">
                Take our 30-second aesthetic quiz and let our algorithm (and experts) style you.
              </p>
              <div className="flex gap-4">
@@ -136,9 +136,9 @@ export const Home: React.FC = () => {
       </div>
 
       {/* Grid */}
-      <div className="w-full px-4 md:px-10 py-24 bg-white dark:bg-[#0f0f11] max-w-[1440px] mx-auto">
-        <div className="flex justify-between items-end mb-16">
-           <h2 className="text-5xl md:text-7xl font-serif font-black text-[#161118] dark:text-white uppercase">The Feed</h2>
+      <div className="w-full px-4 md:px-10 py-16 md:py-24 bg-white dark:bg-[#0f0f11] max-w-[1440px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+           <h2 className="text-5xl md:text-7xl font-serif font-black text-[#161118] dark:text-white uppercase leading-none">The Feed</h2>
            <Link to="/lookbook">
              <Button variant="outline" size="sm" icon>View All</Button>
            </Link>
@@ -148,9 +148,9 @@ export const Home: React.FC = () => {
           {feedItems.map((item, idx) => {
             if (item.type === 'quote') {
               return (
-                <div key={idx} className="break-inside-avoid p-10 bg-[#f3f0f4] dark:bg-[#1a1a1c] rounded-[2.5rem] flex flex-col justify-center items-center text-center gap-8 min-h-[350px] hover:bg-primary hover:text-white transition-all duration-500 group border border-transparent hover:border-black/10">
-                  <span className="text-8xl font-serif group-hover:text-white text-primary/30 leading-none">"</span>
-                  <p className="text-2xl font-bold leading-tight group-hover:text-white text-[#161118] dark:text-white">
+                <div key={idx} className="break-inside-avoid p-8 md:p-10 bg-[#f3f0f4] dark:bg-[#1a1a1c] rounded-[2.5rem] flex flex-col justify-center items-center text-center gap-6 md:gap-8 min-h-[300px] hover:bg-primary hover:text-white transition-all duration-500 group border border-transparent hover:border-black/10">
+                  <span className="text-6xl md:text-8xl font-serif group-hover:text-white text-primary/30 leading-none">"</span>
+                  <p className="text-xl md:text-2xl font-bold leading-tight group-hover:text-white text-[#161118] dark:text-white">
                     {item.text}
                   </p>
                   <div className="flex items-center gap-3 mt-4">
